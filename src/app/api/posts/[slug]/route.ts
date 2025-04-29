@@ -5,7 +5,7 @@ interface Params {
   params: { slug: string };
 }
 
-export async function GET(_: Request, { params }: Params) {
+export async function GET({ params }: Params) {
   const { slug } = params;
 
   try {

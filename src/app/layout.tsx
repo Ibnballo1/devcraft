@@ -1,38 +1,52 @@
+import type React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+// import { SessionProvider } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+import { SessionWrapper } from "@/components/session-wrapper";
+
+import { authOptions } from "@/lib/auth";
+import { MainNav } from "@/components/nav/main-nav";
+import { Footer } from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
+// import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "next-themes";
+
 import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevCraft",
-  description:
-    "Crafting better web developers — one project, one tutorial, one insight at a time",
+  title: {
+    default: "DevCraft",
+    template: "%s | DevCraft",
+  },
+  description: "A modern blog platform built with Next.js",
+  keywords: ["blog", "nextjs", "react", "typescript"],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
-        {children}
-        <Footer />
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {/* <SessionProvider session={session}> */}
+          <SessionWrapper session={session}>
+            <div className="relative flex min-h-screen flex-col">
+              <MainNav />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </SessionWrapper>
+          {/* </SessionProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );

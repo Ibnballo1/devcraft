@@ -117,15 +117,45 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  scope: 'scope',
+  id_token: 'id_token',
+  session_state: 'session_state'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  sessionToken: 'sessionToken',
+  userId: 'userId',
+  expires: 'expires'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  passwordHash: 'passwordHash',
-  role: 'role',
+  emailVerified: 'emailVerified',
+  image: 'image',
+  password: 'password',
   bio: 'bio',
-  avatarUrl: 'avatarUrl',
-  createdAt: 'createdAt'
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VerificationTokenScalarFieldEnum = {
+  identifier: 'identifier',
+  token: 'token',
+  expires: 'expires'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
@@ -133,33 +163,37 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   slug: 'slug',
   content: 'content',
-  coverImageUrl: 'coverImageUrl',
-  status: 'status',
-  readTime: 'readTime',
-  views: 'views',
+  excerpt: 'excerpt',
+  coverImage: 'coverImage',
+  published: 'published',
+  featured: 'featured',
+  authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  authorId: 'authorId'
+  viewCount: 'viewCount',
+  userId: 'userId'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+};
+
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
   content: 'content',
-  createdAt: 'createdAt',
   postId: 'postId',
   userId: 'userId',
-  parentId: 'parentId'
-};
-
-exports.Prisma.TagScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  createdAt: 'createdAt'
+  parentId: 'parentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -177,22 +211,20 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 exports.Role = exports.$Enums.Role = {
-  ADMIN: 'ADMIN',
+  USER: 'USER',
   AUTHOR: 'AUTHOR',
-  READER: 'READER'
-};
-
-exports.PostStatus = exports.$Enums.PostStatus = {
-  DRAFT: 'DRAFT',
-  PUBLISHED: 'PUBLISHED'
+  ADMIN: 'ADMIN'
 };
 
 exports.Prisma.ModelName = {
+  Account: 'Account',
+  Session: 'Session',
   User: 'User',
+  VerificationToken: 'VerificationToken',
   Post: 'Post',
-  Comment: 'Comment',
+  Category: 'Category',
   Tag: 'Tag',
-  NewsletterSubscriber: 'NewsletterSubscriber'
+  Comment: 'Comment'
 };
 
 /**

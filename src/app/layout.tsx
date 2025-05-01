@@ -1,7 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { SessionWrapper } from "@/components/session-wrapper";
 
@@ -9,7 +8,6 @@ import { authOptions } from "@/lib/auth";
 import { MainNav } from "@/components/nav/main-nav";
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
-// import { ThemeProvider } from "@/components/theme-provider"
 import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
@@ -21,7 +19,8 @@ export const metadata: Metadata = {
     default: "DevCraft",
     template: "%s | DevCraft",
   },
-  description: "A modern blog platform built with Next.js",
+  description:
+    "DevCraft is a modern, developer-first blog platform focused on everything web development — from front-end frameworks to backend architectures, tooling, deployment strategies, and emerging tech trends. Built with Next.js and powered by a sleek, minimal UI, DevCraft delivers insightful content, tutorials, and best practices for web developers at all levels.",
   keywords: ["blog", "nextjs", "react", "typescript"],
 };
 
@@ -36,7 +35,6 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <SessionProvider session={session}> */}
           <SessionWrapper session={session}>
             <div className="relative flex min-h-screen flex-col">
               <MainNav />
@@ -45,7 +43,6 @@ export default async function RootLayout({
             </div>
             <Toaster />
           </SessionWrapper>
-          {/* </SessionProvider> */}
         </ThemeProvider>
       </body>
     </html>

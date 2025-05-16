@@ -21,7 +21,7 @@ export default async function Home() {
     <div className="flex flex-col">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center relative">
             <div className="space-y-4">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                 Discover Insights & Stories
@@ -44,7 +44,7 @@ export default async function Home() {
             </div>
             <Image
               src="/placeholder.svg"
-              alt="Blog Hero Image"
+              alt="DevCraft Blog Hero Image"
               width={800}
               height={550}
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
@@ -74,7 +74,7 @@ export default async function Home() {
               <Card key={post.id} className="overflow-hidden">
                 <CardHeader className="p-0">
                   <Image
-                    src={post.coverImage || "/placeholder.svg"}
+                    src="/banner-devcraft.jpeg" // {post.coverImage || "/placeholder.svg"}
                     alt={`${post.title} thumbnail`}
                     width={400}
                     height={200}
@@ -103,7 +103,7 @@ export default async function Home() {
                 <CardFooter className="flex items-center justify-between p-4 pt-0">
                   <div className="flex items-center gap-2">
                     <Image
-                      src={post.author.image || "/placeholder.svg"}
+                      src="/placeholder.jpg" // {post.author.image || "/placeholder.jpg"}
                       alt={`${post.author.name} avatar`}
                       width={32}
                       height={32}

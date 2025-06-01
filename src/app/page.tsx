@@ -21,35 +21,35 @@ export default async function Home() {
     <div className="flex flex-col">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center relative">
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Discover Insights & Stories
-              </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Explore thought-provoking articles, expert opinions, and the
-                latest trends in technology, design, and more.
-              </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button asChild size="lg">
-                  <Link href="/blog">
-                    Start Reading
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg">
-                  <Link href="/newsletter">Subscribe</Link>
-                </Button>
-              </div>
+          {/* <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center relative"> */}
+          <div className="flex flex-col items-center space-y-4">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+              Discover Insights & Stories
+            </h1>
+            <p className="max-w-[600px] text-muted-foreground md:text-xl">
+              Explore thought-provoking articles, expert opinions, and the
+              latest trends in technology, design, and more.
+            </p>
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Button asChild size="lg">
+                <Link href="/blog">
+                  Start Reading
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg">
+                <Link href="/newsletter">Subscribe</Link>
+              </Button>
             </div>
-            <Image
+          </div>
+          {/* <Image
               src="/placeholder.svg"
               alt="DevCraft Blog Hero Image"
               width={800}
               height={550}
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
-            />
-          </div>
+            /> */}
+          {/* </div> */}
         </div>
       </section>
 
@@ -71,7 +71,10 @@ export default async function Home() {
           </div>
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
             {latestPosts.map((post) => (
-              <Card key={post.id} className="overflow-hidden">
+              <Card
+                key={post.id}
+                className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-foreground hover:text-muted-foreground overflow-hidden"
+              >
                 <CardHeader className="p-0">
                   <Image
                     src="/banner-devcraft.jpeg" // {post.coverImage || "/placeholder.svg"}
@@ -93,7 +96,11 @@ export default async function Home() {
                       </Link>
                     ))}
                   </div>
-                  <CardTitle className="line-clamp-2 text-xl">
+                  <CardTitle
+                    className={`line-clamp-2 text-xl ${
+                      post.title.length > 28 ? "mb-0" : "mb-9"
+                    }`}
+                  >
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </CardTitle>
                   <p className="line-clamp-3 mt-2 text-muted-foreground">
@@ -128,8 +135,8 @@ export default async function Home() {
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
+          <div className="flex flex-col items-center">
+            <div className="space-y-4 flext">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
                 Stay Updated
               </h2>
@@ -150,7 +157,7 @@ export default async function Home() {
                 Policy.
               </p>
             </div>
-            <div className="flex justify-center lg:justify-end">
+            {/* <div className="flex justify-center lg:justify-end">
               <Image
                 src="/placeholder.svg"
                 alt="Newsletter illustration"
@@ -158,7 +165,7 @@ export default async function Home() {
                 height={350}
                 className="rounded-xl"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
